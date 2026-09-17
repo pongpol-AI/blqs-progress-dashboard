@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>BLQS Progress Monitor</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✓</span><div><p class="eyebrow">ISO 15189 / ISO 15190 · โรงพยาบาลนครปฐม</p><h1>ติดตามการแก้ไขข้อบกพร่อง</h1></div></div>
+      <div class="header-actions"><button id="refresh" class="icon-button" title="โหลดข้อมูลใหม่">↻</button><div class="sync"><span id="sync-dot"></span><span id="sync-text">กำลังโหลดข้อมูล</span></div></div>
+    </header>
+    <section class="welcome-banner">
+      <div><p class="eyebrow light">BLQS PROGRESS MONITOR</p><h2>ภาพรวมการดำเนินการแก้ไข<br>สำหรับการตรวจประเมินครั้งนี้</h2><p>ข้อมูลจะอัปเดตจาก Excel ที่ซิงก์ขึ้น GitHub โดยอัตโนมัติ</p></div>
+      <div class="banner-orb"><span id="banner-pct">0%</span><small>ความคืบหน้า</small></div>
+    </section>
+    <section class="stats-grid" aria-label="สรุปสถานะ">
+      <article class="stat-card accent-blue"><div><p>รายการข้อบกพร่องทั้งหมด</p><strong id="total-count">0</strong><small>รายการจากการตรวจ</small></div><span class="stat-icon">▤</span></article>
+      <article class="stat-card accent-amber"><div><p>รอบันทึกการแก้ไข</p><strong id="pending-count">0</strong><small>ต้องดำเนินการต่อ</small></div><span class="stat-icon">◷</span></article>
+      <article class="stat-card accent-teal"><div><p>ส่งแล้ว / อยู่ระหว่างประเมิน</p><strong id="submitted-count">0</strong><small>รายการ</small></div><span class="stat-icon">↗</span></article>
+      <article class="stat-card accent-green"><div><p>ผ่านการประเมินแล้ว</p><strong id="approved-count">0</strong><small>รายการ</small></div><span class="stat-icon">✓</span></article>
+    </section>
+    <section class="dashboard-grid">
+      <article class="panel progress-panel">
+        <div class="panel-title"><div><p class="eyebrow">PROGRESS</p><h2>ความคืบหน้าการแก้ไข</h2></div><span id="progress-copy" class="progress-badge">0 จาก 0</span></div>
+        <div class="progress-body"><div id="donut" class="donut" role="img" aria-label="กราฟความคืบหน้า"><div><strong id="progress-pct">0%</strong><span>ดำเนินการแล้ว</span></div></div><div id="status-bars" class="status-bars"></div></div>
+      </article>
+      <article class="panel deadline-panel">
+        <div class="panel-title"><div><p class="eyebrow">DEADLINE</p><h2>เวลาส่งผลการแก้ไข</h2></div><span class="calendar">◫</span></div>
+        <time id="remaining" class="remaining">—</time><p id="due-date" class="muted"></p><hr><p class="label">ผ่านหลังสิ้นสุดการตรวจประเมิน</p><time id="elapsed" class="elapsed">00 วัน 00:00:00</time><p id="audit-date" class="muted"></p>
+      </article>
+    </section>
+    <section class="panel issues-panel">
+      <div class="table-toolbar"><div><p class="eyebrow">ISSUE REGISTER</p><h2>รายการข้อบกพร่อง</h2></div><div class="tools"><div id="filters" class="filters" aria-label="กรองตามสถานะ"></div><label class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="ค้นหาเลขข้อ, clause หรือหัวข้อ"></label></div></div>
+      <p id="row-summary" class="table-summary"></p><div class="table-wrap"><table><thead><tr><th>ลำดับ</th><th>ประเภท</th><th>ข้อกำหนด</th><th>หัวข้อ</th><th>สถานะ</th></tr></thead><tbody id="issue-list"></tbody></table></div>
+    </section>
+    <footer>ข้อมูลจาก <code>data/status.json</code> · หน้าเว็บตรวจข้อมูลใหม่ทุก 60 วินาที</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
