@@ -23,9 +23,9 @@
     </section>
     <section class="stats-grid" aria-label="สรุปสถานะ">
       <article class="stat-card accent-blue"><div><p>รายการข้อบกพร่องทั้งหมด</p><strong id="total-count">0</strong><small>รายการจากการตรวจ</small></div><span class="stat-icon">▤</span></article>
-      <article class="stat-card accent-amber"><div><p>รอบันทึกการแก้ไข</p><strong id="pending-count">0</strong><small>ต้องดำเนินการต่อ</small></div><span class="stat-icon">◷</span></article>
-      <article class="stat-card accent-teal"><div><p>ส่งแล้ว / อยู่ระหว่างประเมิน</p><strong id="submitted-count">0</strong><small>รายการ</small></div><span class="stat-icon">↗</span></article>
-      <article class="stat-card accent-green"><div><p>ผ่านการประเมินแล้ว</p><strong id="approved-count">0</strong><small>รายการ</small></div><span class="stat-icon">✓</span></article>
+      <article class="stat-card accent-teal"><div><p>อยู่ระหว่างประเมินการแก้ไข</p><strong id="review-count">0</strong><small>รอผลประเมินจากผู้ตรวจ</small></div><span class="stat-icon">⌛</span></article>
+      <article class="stat-card accent-green"><div><p>ปิดการแก้ไขแล้ว</p><strong id="closed-count">0</strong><small>สมบูรณ์แล้ว</small></div><span class="stat-icon">✓</span></article>
+      <article class="stat-card accent-amber"><div><p>รอการแก้ไขเพิ่มเติม</p><strong id="returned-count">0</strong><small>ผู้ตรวจส่งกลับมาแก้ไข</small></div><span class="stat-icon">↶</span></article>
     </section>
     <section class="dashboard-grid">
       <article class="panel progress-panel">
@@ -37,9 +37,13 @@
         <time id="remaining" class="remaining">—</time><p id="due-date" class="muted"></p><hr><p class="label">ผ่านหลังสิ้นสุดการตรวจประเมิน</p><time id="elapsed" class="elapsed">00 วัน 00:00:00</time><p id="audit-date" class="muted"></p>
       </article>
     </section>
+    <section class="panel assessor-panel">
+      <div class="panel-title"><div><p class="eyebrow">ASSESSOR SUMMARY</p><h2>สรุปผลแยกตามผู้ตรวจประเมิน</h2></div><span class="muted">อัปเดตจากไฟล์ Excel ล่าสุด</span></div>
+      <div id="assessor-list" class="assessor-grid" aria-live="polite"></div>
+    </section>
     <section class="panel issues-panel">
       <div class="table-toolbar"><div><p class="eyebrow">ISSUE REGISTER</p><h2>รายการข้อบกพร่อง</h2></div><div class="tools"><div id="filters" class="filters" aria-label="กรองตามสถานะ"></div><label class="search-wrap"><span>⌕</span><input id="search" type="search" placeholder="ค้นหาเลขข้อ, clause หรือหัวข้อ"></label></div></div>
-      <p id="row-summary" class="table-summary"></p><div class="table-wrap"><table><thead><tr><th>ลำดับ</th><th>ประเภท</th><th>ข้อกำหนด</th><th>หัวข้อ</th><th>สถานะ</th></tr></thead><tbody id="issue-list"></tbody></table></div>
+      <p id="row-summary" class="table-summary"></p><div class="table-wrap"><table><thead><tr><th>ลำดับ</th><th>ผู้ตรวจประเมิน</th><th>ประเภท</th><th>ข้อกำหนด</th><th>หัวข้อ</th><th>สถานะ</th></tr></thead><tbody id="issue-list"></tbody></table></div>
     </section>
     <footer>ข้อมูลจาก <code>data/status.json</code> · หน้าเว็บตรวจข้อมูลใหม่ทุก 60 วินาที</footer>
   </main>
